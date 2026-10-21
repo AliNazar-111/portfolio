@@ -13,7 +13,7 @@ export const profile = {
 
 export const links = {
   github: "https://github.com/AliNazar-111",
-  linkedin: "https://www.linkedin.com/in/muhammmad-ali-1703b43bb/",
+  linkedin: "https://www.linkedin.com/in/muhammad-ali-18569331b/",
 };
 
 export const about = {
