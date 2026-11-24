@@ -18,6 +18,8 @@ import {
   about,
   stats,
   services,
+  designWork,
+  storeNiches,
   projects,
   techStack,
 } from "./data.js";
@@ -265,6 +267,7 @@ function Navbar() {
   const navLinks = [
     ["About", "#about"],
     ["Services", "#services"],
+    ["Design", "#design"],
     ["Work", "#work"],
     ["Stack", "#stack"],
   ];
@@ -299,10 +302,12 @@ function Navbar() {
 /* ---------------- Rotating role text ---------------- */
 const roles = [
   "Full-Stack Development",
+  "UI/UX & Figma Design",
+  "Shopify & WordPress Stores",
+  "Desktop Apps · C# & VB6",
   "Real-Time Systems",
   "Developer Tooling",
   "AI & Computer Vision",
-  "Web Applications",
 ];
 function Rotator() {
   const [i, setI] = useState(0);
@@ -446,6 +451,15 @@ function Hero({ ready }) {
             <small>Python · OpenCV</small>
           </div>
         </motion.div>
+        <motion.div className="hero-chip chip-4" {...float(0.6)}>
+          <span className="chip-ico">
+            <Icon.pen width={18} height={18} />
+          </span>
+          <div>
+            UI/UX Design
+            <small>Figma · Shopify</small>
+          </div>
+        </motion.div>
       </motion.div>
 
       <div className="scroll-hint">
@@ -501,11 +515,13 @@ function About() {
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="about-badge-num grad-text">6</span>
+            <span className="about-badge-num grad-text">
+              {projects.length + designWork.length}
+            </span>
             <span className="about-badge-label">
-              open-source
+              products &amp; stores
               <br />
-              projects shipped
+              designed &amp; shipped
             </span>
           </motion.div>
         </Reveal>
@@ -599,7 +615,7 @@ function Services() {
     <section className="section" id="services">
       <SectionHead
         eyebrow="What I do"
-        sub="From first prototype to production — full-stack products, real-time systems, and developer tools."
+        sub="From Figma prototype to production — storefronts, full-stack products, desktop software, and developer tools."
       >
         What I <span className="grad-text">build</span>
       </SectionHead>
@@ -607,6 +623,118 @@ function Services() {
         {services.map((s) => (
           <TiltCard service={s} key={s.title} />
         ))}
+      </Reveal>
+    </section>
+  );
+}
+
+/* ---------------- Design case card (Live site / Figma toggle) ---------------- */
+const VIEW_LABEL = { site: "Live site", figma: "Figma" };
+function CaseCard({ item }) {
+  const views = ["site", "figma"].filter((k) => item.images[k]);
+  const [view, setView] = useState(views[0]);
+  const href = view === "site" ? item.links.live : item.links.figma;
+  return (
+    <motion.article className="case-card" variants={fadeUp}>
+      <div className={`case-media is-${view}`}>
+        <a
+          className="case-media-link"
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`Open ${item.title} — ${VIEW_LABEL[view]}`}
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.img
+              key={view}
+              className={`case-img case-img-${view}`}
+              src={item.images[view]}
+              alt={`${item.title} — ${VIEW_LABEL[view]}`}
+              loading="lazy"
+              initial={{ opacity: 0, scale: 1.03 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            />
+          </AnimatePresence>
+        </a>
+        <span className="project-cat">{item.category}</span>
+        {views.length > 1 && (
+          <div className="case-toggle" role="group" aria-label="Preview">
+            {views.map((k) => (
+              <button
+                key={k}
+                type="button"
+                className={view === k ? "active" : ""}
+                aria-pressed={view === k}
+                onClick={() => setView(k)}
+              >
+                {view === k && (
+                  <motion.span
+                    className="case-toggle-pill"
+                    layoutId={`pill-${item.title}`}
+                    transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                  />
+                )}
+                <span className="case-toggle-label">{VIEW_LABEL[k]}</span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+      <div className="case-body">
+        <h3>{item.title}</h3>
+        <p>{item.desc}</p>
+        <div className="tag-row">
+          {item.tags.map((t) => (
+            <span className="tag" key={t}>
+              {t}
+            </span>
+          ))}
+        </div>
+        <div className="case-links">
+          <a className="case-link" href={item.links.figma} target="_blank" rel="noreferrer">
+            <Icon.pen width={15} height={15} /> Figma file
+          </a>
+          {item.links.live ? (
+            <a className="case-link" href={item.links.live} target="_blank" rel="noreferrer">
+              <Icon.ext width={15} height={15} /> Visit site
+            </a>
+          ) : (
+            item.note && <span className="case-note">{item.note}</span>
+          )}
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
+/* ---------------- Design & e-commerce ---------------- */
+function DesignWork() {
+  return (
+    <section className="section" id="design">
+      <SectionHead
+        eyebrow="UI/UX · Figma · E-commerce"
+        sub="Client storefronts taken from UX audit and Figma design through to Shopify and WordPress."
+      >
+        Design &amp; <span className="grad-text">e-commerce</span>
+      </SectionHead>
+      <Reveal className="design-grid" variants={stagger}>
+        {designWork.map((d) => (
+          <CaseCard item={d} key={d.title} />
+        ))}
+      </Reveal>
+      <Reveal className="niches" variants={stagger}>
+        <motion.span className="niches-label" variants={fadeUp}>
+          <Icon.bag width={15} height={15} /> Store niches I design for
+        </motion.span>
+        <motion.div className="niches-list" variants={fadeUp}>
+          {storeNiches.map((n) => (
+            <span className="niche" key={n}>
+              {n}
+            </span>
+          ))}
+        </motion.div>
       </Reveal>
     </section>
   );
@@ -635,12 +763,15 @@ function ProjectCard({ project }) {
     ry.set(0);
   };
 
+  // Private client work has no public link: render a plain card, no arrow.
+  const Card = project.link ? motion.a : motion.div;
+  const linkProps = project.link
+    ? { href: project.link, target: "_blank", rel: "noreferrer" }
+    : { "data-cursor": "" };
   return (
-    <motion.a
+    <Card
       ref={ref}
-      href={project.link}
-      target="_blank"
-      rel="noreferrer"
+      {...linkProps}
       className="project-card"
       variants={fadeUp}
       onMouseMove={move}
@@ -653,9 +784,15 @@ function ProjectCard({ project }) {
         </motion.div>
         <span className="project-overlay" />
         <span className="project-cat">{project.category}</span>
-        <span className="project-view">
-          <Icon.arrow width={20} height={20} />
-        </span>
+        {project.link ? (
+          <span className="project-view">
+            <Icon.arrow width={20} height={20} />
+          </span>
+        ) : (
+          <span className="project-private">
+            <Icon.lock width={13} height={13} /> Client project
+          </span>
+        )}
       </div>
       <div className="project-body">
         <h3>{project.title}</h3>
@@ -668,7 +805,7 @@ function ProjectCard({ project }) {
           ))}
         </div>
       </div>
-    </motion.a>
+    </Card>
   );
 }
 
@@ -678,7 +815,7 @@ function Projects() {
     <section className="section" id="work">
       <SectionHead
         eyebrow="Selected work"
-        sub="A few systems I've designed and shipped end to end."
+        sub="Web, desktop, and developer tools I've designed and shipped end to end."
       >
         Featured <span className="grad-text">projects</span>
       </SectionHead>
@@ -738,7 +875,7 @@ function Contact() {
           Let's build <span className="grad-text">something.</span>
         </h2>
         <p>
-          Have a product to ship, a system to scale, or a tool to build? I'm open to new
+          Have a store to design, a product to ship, or a system to scale? I'm open to new
           projects and collaborations — reach out on LinkedIn or take a look at my code.
         </p>
         <div className="cta-actions">
@@ -813,6 +950,7 @@ export default function App() {
         <Stats />
         <About />
         <Services />
+        <DesignWork />
         <Projects />
         <TechStack />
         <Contact />

@@ -1,12 +1,18 @@
 // Central content source for the portfolio.
 // Edit values here to update the site — no component changes needed.
 
+import leiandmarSite from "./assets/work/leiandmar-site.webp";
+import leiandmarFigma from "./assets/work/leiandmar-figma.webp";
+import leafySite from "./assets/work/leafy-site.webp";
+import leafyFigma from "./assets/work/leafy-figma.webp";
+import roverFigma from "./assets/work/rover-figma.webp";
+
 export const profile = {
   name: "Muhammad Ali",
-  role: "Software Engineer",
-  headline: "Full-Stack · Real-Time Systems · Developer Tooling",
+  role: "Software Engineer & UI/UX Designer",
+  headline: "Full-Stack · UI/UX & Figma · Shopify & WordPress · Desktop Apps",
   tagline:
-    "I build full-stack web apps, real-time collaborative systems, and developer tooling — plus the occasional Python AI experiment.",
+    "I design in Figma and build what I design — Shopify and WordPress stores, full-stack web apps, desktop software in C# / .NET and VB6, and developer tooling.",
   location: "Open to remote work",
   available: true,
 };
@@ -21,31 +27,51 @@ export const about = {
   photo:
     "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=640&q=80&auto=format&fit=crop",
   photoAlt: "Code on a screen",
-  heading: "Software engineer who ships end to end.",
+  heading: "From Figma to production — I ship end to end.",
   paragraphs: [
-    "I'm a software engineer who enjoys the whole stack — from Next.js and TypeScript front-ends to Node backends, real-time sync, and the databases underneath. Most of what I build starts as a problem I hit myself and turns into a tool other people can use.",
-    "My open-source work spans real-time collaborative editing with CRDTs, database CLIs for seeding and migration, and a couple of Python projects in computer vision and offline voice. I care about clean architecture, measurable performance, and code that holds up in production.",
+    "I'm a software engineer and UI/UX designer who enjoys the whole journey — UX audits, wireframes and high-fidelity designs in Figma, then the Shopify or WordPress storefront, Next.js and TypeScript front-end, Node backend, and the database underneath.",
+    "Beyond the web I build desktop software: a parametric BIM authoring app in C# / .NET / WPF, and a Visual Basic 6 healthcare system for Cavan, Mullingar, Tullamore and Portlaoise in Ireland. My open-source work spans real-time collaborative editing with CRDTs, database CLIs, and Python projects in computer vision and offline voice.",
   ],
   highlights: [
+    "UI/UX design in Figma — audits, wireframes, prototypes",
+    "Shopify & WordPress stores, designed and built",
     "Full-stack web apps — Next.js, TypeScript, Node",
-    "Real-time & collaborative systems (CRDTs, WebSocket)",
-    "Developer tooling & database CLIs",
+    "Desktop software — C# / .NET / WPF and VB6",
+    "Real-time systems & developer tooling",
   ],
 };
 
 export const stats = [
-  { value: "6", label: "Featured Projects" },
-  { value: "13", label: "Public Repos" },
-  { value: "5+", label: "Languages" },
-  { value: "100%", label: "Open Source" },
+  { value: "8", label: "Featured Projects" },
+  { value: "3", label: "Client Design Projects" },
+  { value: "15", label: "Public Repos" },
+  { value: "6+", label: "Languages" },
 ];
 
 export const services = [
+  {
+    icon: "pen",
+    title: "UI/UX & Figma Design",
+    desc: "UX audits, wireframes, and high-fidelity designs in Figma — clear user flows and prototypes that hand off cleanly to development.",
+    tags: ["Figma", "UX Audit", "Wireframes", "Prototyping"],
+  },
+  {
+    icon: "bag",
+    title: "Shopify & WordPress",
+    desc: "Storefronts built from the Figma design — home, collection, and product pages that are fast, on-brand, and easy for the client to manage.",
+    tags: ["Shopify", "Liquid", "WordPress", "Elementor"],
+  },
   {
     icon: "web",
     title: "Full-Stack Web Apps",
     desc: "End-to-end product builds with Next.js and React on the front, Node and TypeScript APIs behind them.",
     tags: ["Next.js", "React", "TypeScript", "Node.js"],
+  },
+  {
+    icon: "desktop",
+    title: "Desktop & Enterprise Apps",
+    desc: "Windows software, from modern C# / .NET / WPF applications to Visual Basic 6 systems that still run day-to-day operations.",
+    tags: ["C#", ".NET", "WPF", "VB6"],
   },
   {
     icon: "flow",
@@ -73,6 +99,67 @@ export const services = [
   },
 ];
 
+// Client UI/UX work. `images.site` is a capture of the live site, `images.figma`
+// the Figma file's thumbnail; a card shows a Live / Figma toggle when it has both.
+export const designWork = [
+  {
+    title: "Lei & Mar Co",
+    category: "UX Audit · Shopify",
+    desc: "A page-by-page UX audit of a waterproof gold-jewellery store — annotated redesigns of the home, collection, and product pages in Figma for the brand's Shopify storefront.",
+    tags: ["Figma", "UX Audit", "Shopify"],
+    images: { site: leiandmarSite, figma: leiandmarFigma },
+    links: {
+      figma:
+        "https://www.figma.com/design/8gZuhOaQpbEktyiOKYWQEd/Lei---Mar-Audit?node-id=64-88&t=ExeP6ej3ajrXAlRe-1",
+      live: "https://leiandmar.com/",
+    },
+  },
+  {
+    title: "Be Happy Go Leafy",
+    category: "Web Design · WordPress",
+    desc: "Website design for a botanical wellness brand — a playful, mascot-led look carried across the home, shop, and content pages, built in WordPress with Elementor.",
+    tags: ["Figma", "WordPress", "Elementor"],
+    images: { site: leafySite, figma: leafyFigma },
+    links: {
+      figma:
+        "https://www.figma.com/design/EAJzPeuLh2Fdn3gnqlDbj8/Website?node-id=0-1&t=usWdEvkvMBWrbHXi-1",
+      live: "https://behappygoleafy.com/",
+    },
+  },
+  {
+    title: "Rover Vaults",
+    category: "Store Design · Shopify",
+    desc: "A rugged, camo-green storefront for an off-road vehicle brand — home, inventory, and specification pages with responsive layouts, designed in Figma for Shopify.",
+    tags: ["Figma", "Shopify", "Responsive"],
+    images: { figma: roverFigma },
+    links: {
+      figma:
+        "https://www.figma.com/design/8spUaVqncTt8RIuF9y16hX/rovervault_design?node-id=0-1&t=LeQpSzUFCa10EPnb-1",
+      live: null, // Shopify dev store is currently unavailable
+    },
+    note: "Design file only",
+  },
+];
+
+// Store niches shown under the design work.
+export const storeNiches = [
+  "Food & Beverage",
+  "Coffee",
+  "Jewellery",
+  "Beauty & Skincare",
+  "Bath & Body",
+  "Candles & Home Fragrance",
+  "Fashion & Apparel",
+  "Bridal",
+  "Children's Products",
+  "Health & Wellness",
+  "Home & Lifestyle",
+  "Bedding",
+  "Lingerie",
+  "Eco-Friendly",
+  "Technology",
+];
+
 export const projects = [
   {
     title: "SynkDocs",
@@ -82,6 +169,24 @@ export const projects = [
     image:
       "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=80&auto=format&fit=crop",
     link: "https://github.com/AliNazar-111/SynkDocs",
+  },
+  {
+    title: "BIMDesigner",
+    category: "Desktop · BIM / AEC",
+    desc: "A parametric BIM authoring app for Windows — walls, levels, schedules, sections, 3D views, and sheets, with PDF, DWG/DXF, and IFC4 export, all on a UI-free core model.",
+    tags: ["C#", ".NET 10", "WPF", "IFC4"],
+    image:
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&q=80&auto=format&fit=crop",
+    link: "https://github.com/AliNazar-111/BIM",
+  },
+  {
+    title: "Healthcare System",
+    category: "Desktop · Healthcare",
+    desc: "A Windows desktop healthcare system built in Visual Basic 6 for sites in Cavan, Mullingar, Tullamore, and Portlaoise, Ireland — classic VB6 forms and data access, kept dependable for daily use across all four locations.",
+    tags: ["VB6", "Windows Desktop", "Healthcare"],
+    image:
+      "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=900&q=80&auto=format&fit=crop",
+    link: null, // private client project — no public repo
   },
   {
     title: "schema-seed",
@@ -134,10 +239,17 @@ export const techStack = [
   { name: "TypeScript", group: "Languages" },
   { name: "JavaScript", group: "Languages" },
   { name: "Python", group: "Languages" },
+  { name: "C#", group: "Languages" },
+  { name: "Figma", group: "Design" },
+  { name: "Shopify", group: "E-commerce" },
+  { name: "Liquid", group: "E-commerce" },
+  { name: "WordPress", group: "E-commerce" },
   { name: "React", group: "Frontend" },
   { name: "Next.js", group: "Frontend" },
   { name: "Tailwind CSS", group: "Frontend" },
   { name: "Node.js", group: "Backend" },
+  { name: ".NET / WPF", group: "Desktop" },
+  { name: "Visual Basic 6", group: "Desktop" },
   { name: "WebSocket", group: "Backend" },
   { name: "Yjs / CRDT", group: "Real-Time" },
   { name: "PostgreSQL", group: "Database" },
